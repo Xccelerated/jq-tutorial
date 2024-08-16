@@ -1,0 +1,17 @@
+[
+  {
+    "prompt": "Return an array of objects with keys category and total_price containing category names and the sum of the price of all products",
+    "dataset": "products_categories",
+    "solution": "group_by(.category) | map({category: .[0].category, total_price: map(.price) | add})"
+  },
+  {
+    "prompt": "Return an array of objects with keys category and avg_price containing category names and the average price of the products in the category, but only if avg_price > 20",
+    "dataset": "products",
+    "solution": "[group_by(.category) | map({category: .[0].category, avg_price: (map(.price) | add / length)}) | .[] | select(.avg_price > 20)]"
+  },
+  {
+    "prompt": "Bin the data into buckets of size 5. Return an array of objects with a field 'bin' indicating the start of the bin (1, 5, 10, ...) and a field 'count' with the amount of items in the bin",
+    "dataset": "histogram",
+    "solution": "group_by(. / 5 | floor * 5) | map({ bin: .[0], count: length })"
+  }
+]

@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Table",
+    "price": 270.00,
+    "category": "Furniture"
+  },
+  {
+    "name": "Chair",
+    "price": 150.00,
+    "category": "Furniture"
+  },
+  {
+    "name": "Desk",
+    "price": 75.00,
+    "category": "Furniture"
+  },
+  {
+    "name": "Sofa",
+    "price": 200.00,
+    "category": "Furniture"
+  },
+  {
+    "name": "Bookshelf",
+    "price": 40.00,
+    "category": "Furniture"
+  },
+  {
+    "name": "Banana",
+    "price": 2.00,
+    "category": "Fruit"
+  },
+  {
+    "name": "Apple",
+    "price": 4.00,
+    "category": "Fruit"
+  }
+]
