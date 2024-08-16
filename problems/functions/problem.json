@@ -3,5 +3,10 @@
     "prompt": "Define a function that returns an array of products with their prices multiplied by two:",
     "dataset": "products",
     "solution": "map({ name, price: (.price * 2) })"
+  },
+  {
+    "prompt": "Define a function that returns the maximal elements of an array or stream:",
+    "dataset": "max",
+    "solution": "def maximal_by(f): (map(f) | max) as $mx | .[] | select(f == $mx); maximal_by(.a)"
   }
 ]
