@@ -1,0 +1,21 @@
+{
+    "headers": [
+        {
+            "name": "id",
+            "data_type": "INTEGER"
+        },
+        {
+            "name": "country",
+            "data_type": "VARCHAR"
+        },
+        {
+            "name": "temperature",
+            "data_type": "DECIMAL"
+        }
+    ],
+    "rows": [
+        [1, "Netherlands", 15.3],
+        [2, "USA", 18.0],
+        [3, "New Zealand", 22.5]
+    ]
+}

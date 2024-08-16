@@ -8,5 +8,6 @@
     "regexp",
     "functions",
     "grouping",
-    "arithmetic"
+    "arithmetic",
+    "zip"
 ]

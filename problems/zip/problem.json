@@ -1,0 +1,7 @@
+[
+    {
+        "prompt": "Zip up the heaer names with the rows in order to get a list of objects with key value pairs where the key is the column name and the value the corresponding column in the row",
+        "dataset": "zip",
+        "solution": "(.headers | map(.name)) as $headers | .rows | map(. as $row | $headers | with_entries({\"key\": .value, \"value\": $row[.key]}))"
+    }
+]
