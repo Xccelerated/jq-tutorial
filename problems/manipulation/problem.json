@@ -1,8 +1,0 @@
-[
-  {
-    "prompt": "Add a color key to every element, add red if both a and b are 1, else add green",
-    "dataset": "add",
-    "solution": "map(. + {color:(if (.a/.b) == 1 then 'red' else 'green' end)})"
-  }
-]
-

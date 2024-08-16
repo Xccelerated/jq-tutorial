@@ -1,0 +1,7 @@
+[
+    {
+        "prompt": "Add a color key to every element, the value should be purple with a and b are 1, else the value should be white",
+        "dataset": "arithmetic",
+        "solution": "map(. + {color:(if (.a/.b) == 1 then \"purple\" else \"white\" end)})"
+    }
+]
