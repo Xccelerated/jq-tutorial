@@ -1,11 +1,12 @@
 [
-  "pick",
-  "objects",
-  "mapping",
-  "filtering",
-  "output",
-  "reduce",
-  "regexp",
-  "functions",
-  "grouping"
+    "pick",
+    "objects",
+    "mapping",
+    "filtering",
+    "output",
+    "reduce",
+    "regexp",
+    "functions",
+    "grouping",
+    "add"
 ]
