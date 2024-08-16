@@ -6,5 +6,6 @@
   "output",
   "reduce",
   "regexp",
-  "functions"
+  "functions",
+  "grouping"
 ]

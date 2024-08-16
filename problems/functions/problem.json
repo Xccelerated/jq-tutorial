@@ -8,5 +8,10 @@
     "prompt": "Define a function that returns the maximal elements of an array or stream:",
     "dataset": "max",
     "solution": "def maximal_by(f): (map(f) | max) as $mx | .[] | select(f == $mx); maximal_by(.a)"
+  },
+  {
+    "prompt": "Define a function that takes as input a scoreboard and outputs the sum of all the players' scores",
+    "dataset": "scoreboard",
+    "solution": "[.[]] | add"
   }
 ]
