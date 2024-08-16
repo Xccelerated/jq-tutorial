@@ -1,0 +1,8 @@
+{
+  "data": {
+    "value": 42,
+    "nested": {
+      "value": 24
+    }
+  }
+}

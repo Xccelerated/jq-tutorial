@@ -18,6 +18,10 @@
     "prompt": "Construct a new object with the 'name' field renamed to 'title'",
     "dataset": "product",
     "solution": "{ price, title: .name}"
+  },
+  {
+    "prompt": "jq can recursively descend through a nested object using `..`. Use it to recursively find all values for the 'value' key'",
+    "dataset": "nested",
+    "solution": ".. | .value?"
   }
 ]
-

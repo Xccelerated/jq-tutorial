@@ -1,0 +1,7 @@
+[
+  {
+    "prompt": "Define a function that returns an array of products with their prices multiplied by two:",
+    "dataset": "products",
+    "solution": "map({ name, price: (.price * 2) })"
+  }
+]
