@@ -1,0 +1,29 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  DATA_LOCATION: 'https://storage.googleapis.com/xcc-de-assessment/events.json'
+  DATA_DIR: '{{ .DATA_DIR | default "./data" }}'
+  ROWS: '{{ .ROWS | default 10000 }}'
+
+tasks:
+  download_data:
+    cmds:
+      - curl "{{ .DATA_LOCATION }}" -o {{ .DATA_DIR }}/events.json
+
+  test:
+    cmds:
+      - head -n {{ .ROWS }} {{ .DATA_DIR }}/events.json | jq --slurp -L . 'include "sessionize"; sessionize'
+
+  sessionize:
+    cmds:
+      - cat {{ .DATA_DIR }}/events.json | jq --slurp -L . 'include "sessionize"; sessionize' > {{ .DATA_DIR }}/sessions.json
+      
+  median_visits:
+    cmds:
+      - cat {{ .DATA_DIR }}/sessions.json | jq -L . 'include "visits"; median_visits_before_order'
+      
+  median_duration:
+    cmds:
+      - cat {{ .DATA_DIR }}/sessions.json | jq -L . 'include "visits"; median_session_duration_before_order'
