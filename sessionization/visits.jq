@@ -17,8 +17,11 @@ def calculate_sessions(values):
 def sessionize(values):
     group_by( .event."customer-id" )
     | map( group_by( .session ) )
-    | map( map ( calculate_sessions( .[] ) ) )
-    ;
+    | map( 
+        map( 
+            calculate_sessions( .[] ) 
+        )
+    );
 
 def calculate_duration(values):
     foreach(values) as $item (
@@ -27,22 +30,19 @@ def calculate_duration(values):
             else .time += $item.ts_diff
         end;
         if .any then .durations else empty end
-    )
-    ;
+    );
 
 def median(values):
     sort
     | if length % 2 == 0 then (.[length / 2 - 1] + .[length / 2]) / 2
         else .[length / 2]
-    end
-    ;
+    end;
 
 def median_visits_before_order:
     sessionize( . )
     | map ( select ( .[].purchase_session == true ) | map ( select( .purchase_session == true ) ) )
     | reduce .[][] as $item ([]; . += [( $item.session )] )
-    | median( . )
-    ;
+    | median( . );
 
 def median_session_duration_before_order:
     sessionize( . )
@@ -50,5 +50,4 @@ def median_session_duration_before_order:
     | map( calculate_duration( .[] ) )
     | reduce .[] as $item ( []; . += ($item | flatten ) )
     | median( . )
-    | . / 60
-    ;
+    | . / 60;

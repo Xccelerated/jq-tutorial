@@ -14,8 +14,7 @@ def parse_time(time):
     time
     | split(".")[0] 
     | strptime("%Y-%m-%dT%H:%M:%S")
-    | mktime 
-    ;
+    | mktime;
 
 def add_diff_in_seconds(values; $seconds):
     to_entries
@@ -41,7 +40,6 @@ def sessionize:
     | map( 
         map( . + {"unix_ts": parse_time( .event.timestamp ) } )
         | sort_by( .unix_ts )
-        # | select( length > 5 ) 
         | [ window( .[] ) ]
         | add_diff_in_seconds( .; 600 )
         | cumsum( .[]; "new_session" )
