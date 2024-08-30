@@ -1,3 +1,0 @@
-include "visits"; calculate_duration( .[] )
-[{"customer_id":3581,"session":0,"min_ts":1653456783,"max_ts":1653457158,"ts_diff":375,"purchase_session":false},{"customer_id":3581,"session":1,"min_ts":1653461073,"max_ts":1653461133,"ts_diff":60,"purchase_session":true}]
-[375]
