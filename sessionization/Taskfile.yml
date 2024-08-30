@@ -12,17 +12,25 @@ tasks:
     cmds:
       - curl "{{ .DATA_LOCATION }}" -o {{ .DATA_DIR }}/events.json
 
-  test:
+  sessionize_partial:
     cmds:
-      - head -n {{ .ROWS }} {{ .DATA_DIR }}/events.json | jq --slurp -L . 'include "sessionize"; sessionize'
+      - head -n {{ .ROWS }} {{ .DATA_DIR }}/events.json | jq --slurp -L . 'include "sessionize"; sessionize' > {{ .DATA_DIR }}/sessions_{{ .ROWS }}.json
 
   sessionize:
     cmds:
       - cat {{ .DATA_DIR }}/events.json | jq --slurp -L . 'include "sessionize"; sessionize' > {{ .DATA_DIR }}/sessions.json
+
+  median_visits_partial:
+    cmds:
+      - cat {{ .DATA_DIR }}/sessions_{{ .ROWS }}.json | jq -L . 'include "visits"; median_visits_before_order'
       
   median_visits:
     cmds:
       - cat {{ .DATA_DIR }}/sessions.json | jq -L . 'include "visits"; median_visits_before_order'
+
+  median_duration_partial:
+    cmds:
+      - cat {{ .DATA_DIR }}/sessions_{{ .ROWS }}.json | jq -L . 'include "visits"; median_session_duration_before_order'
       
   median_duration:
     cmds:

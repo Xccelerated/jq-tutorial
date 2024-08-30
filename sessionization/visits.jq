@@ -1,4 +1,4 @@
-def calculate_sessions(values):
+def calculate_session_metrics(values):
     reduce(values) as $item (
         {min_ts: null, max_ts: null, purchase_session: false};
         if (.min_ts == null) then .min_ts = $item.unix_ts end
@@ -14,13 +14,11 @@ def calculate_sessions(values):
         }
     );
 
-def sessionize(values):
+def session_metrics(values):
     group_by( .event."customer-id" )
-    | map( group_by( .session ) )
     | map( 
-        map( 
-            calculate_sessions( .[] ) 
-        )
+        group_by( .session ) 
+        | map( calculate_session_metrics( .[] ) )
     );
 
 def calculate_duration(values):
@@ -39,13 +37,13 @@ def median(values):
     end;
 
 def median_visits_before_order:
-    sessionize( . )
+    session_metrics( . )
     | map ( select ( .[].purchase_session == true ) | map ( select( .purchase_session == true ) ) )
     | reduce .[][] as $item ([]; . += [( $item.session )] )
     | median( . );
 
 def median_session_duration_before_order:
-    sessionize( . )
+    session_metrics( . )
     | map ( select ( .[].purchase_session == true ) )
     | map( calculate_duration( .[] ) )
     | reduce .[] as $item ( []; . += ($item | flatten ) )
