@@ -2,6 +2,9 @@
 
 version: '3'
 
+includes:
+  tests: ./tests
+
 vars:
   DATA_LOCATION: 'https://storage.googleapis.com/xcc-de-assessment/events.json'
   DATA_DIR: '{{ .DATA_DIR | default "./data" }}'

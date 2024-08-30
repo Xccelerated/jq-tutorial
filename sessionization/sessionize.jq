@@ -1,3 +1,9 @@
+def parse_time(time):
+    time
+    | split(".")[0] 
+    | strptime("%Y-%m-%dT%H:%M:%S")
+    | mktime;
+
 def window(values):
     if (length == 1) then [ values ]
     else foreach(values | [.]) as $item (
@@ -11,13 +17,6 @@ def window(values):
         if .ready then .items else empty end
     )
     end;
-
-def parse_time(time):
-    time
-    | split(".")[0] 
-    | strptime("%Y-%m-%dT%H:%M:%S")
-    | mktime 
-    ;
 
 def calculate_sessions(values; $seconds):
     if (length == 1) then .[][0] += { "new_session": 1 } | .[]
