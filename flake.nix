@@ -29,6 +29,7 @@
                     buildInputs = with pkgs; [ jq nodejs_22 fzf jiq ];
                     shellHook = ''
                         npm set prefix ~/.npm-global
+                        export PATH=$PATH:$HOME/.npm-global/bin
                         npm install -g jq-tutorial
                     '';
                 };
